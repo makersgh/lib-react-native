@@ -13,7 +13,7 @@ export const Landing = () => {
       <Container alignCenter fullFlex>
         <Logo />
         <Text heading2 style={styles.introductionText}>
-          Get your express delivery fast!
+          Welcome!
         </Text>
         <Image source={assets.images.biker} style={styles.biker} />
       </Container>
