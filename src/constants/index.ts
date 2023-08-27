@@ -6,3 +6,4 @@ export const AppReviewConfig = {
 };
 
 export * from "./welcomeScreen";
+export * from './regexPatterns'

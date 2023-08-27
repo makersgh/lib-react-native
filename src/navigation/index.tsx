@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { DrawerScreen, NavigationStructure, StackScreen, TabScreen } from './types';
+import { PrivacyPolicy } from 'lib_components';
 
 export const createStack = (stackScreens: StackScreen[], modals?: StackScreen[]) => {
   const StackRoot = createStackNavigator();
@@ -88,6 +89,16 @@ export const createTabs = (tabScreens: TabScreen[]) => {
 };
 
 export const setupNavigation = (navigationStructure: NavigationStructure) => {
+
+  //add internal modals
+  navigationStructure.modals = [
+    ...navigationStructure.modals ?? [],
+    {
+      name: "PrivacyPolicy",
+      component: PrivacyPolicy,
+    },
+  ]
+
   let rootStack;
   if (navigationStructure.drawerScreens) {
     rootStack = createDrawer(navigationStructure.drawerScreens ?? []);

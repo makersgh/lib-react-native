@@ -12,20 +12,13 @@ export enum NAVIGATION_TYPES {
 }
 
 export interface StackScreen {
-  name?: string;
+  name: string;
   component?: any;
   options?: StackNavigationOptions;
   initialParams?: {[key: string]: string};
   stackScreens?: StackScreen[];
-  tabScreens?: TabStackScreen[];
+  tabScreens?: TabScreen[];
   drawerScreens?: DrawerScreen[];
-}
-export interface TabStackScreen {
-  name: string;
-  component: any;
-  options?: StackNavigationOptions;
-  initialParams?: {[key: string]: string};
-  stackScreens?: TabStackScreen[];
 }
 export interface DrawerScreen {
   name: string;

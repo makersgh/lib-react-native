@@ -6,12 +6,12 @@ import { FormComponentProps, FormElementProps, FORMTYPES } from '../types';
 import { ScrollView, View } from 'react-native';
 import { styles } from './style';
 import { Button, ComponentSeparator, Container, Text } from 'lib_components';
-import { FormInput } from 'lib_forms/components';
+import { FormInput } from 'lib_form_components';
 
 interface FormBuilderProps {
   title?: string;
   submitText?: string;
-  schema?: AnyObjectSchema;
+  schema: AnyObjectSchema;
   formElements: FormElementProps[];
   onSubmit?: (data: FieldValues) => void;
 }
