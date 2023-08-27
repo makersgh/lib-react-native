@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import theme from 'lib_styles/theme';
+import { theme } from 'lib_styles';
 
 export default StyleSheet.create({
   button: {

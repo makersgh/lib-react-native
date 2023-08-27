@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text as BaseText, TextProps as BaseTextProps } from 'react-native';
-import theme from 'lib_styles/theme';
+import {theme} from 'lib_styles';
 
 interface TextProps extends BaseTextProps {
   children?: React.ReactNode;

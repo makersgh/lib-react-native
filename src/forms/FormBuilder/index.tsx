@@ -5,7 +5,7 @@ import { AnyObjectSchema } from 'yup';
 import { FormComponentProps, FormElementProps, FORMTYPES } from '../types';
 import { ScrollView, View } from 'react-native';
 import { styles } from './style';
-import { Button, ComponentSeparator, Container, Text } from 'lib_components';
+import { Button, ComponentSeparator, Container, Spacer, Text } from 'lib_components';
 import { FormInput } from 'lib_form_components';
 
 interface FormBuilderProps {
@@ -25,32 +25,33 @@ export const FormBuilder: FC<FormBuilderProps> = (props: FormBuilderProps) => {
     resolver: yupResolver(props.schema),
   });
   return (
-    <ScrollView style={styles.container}>
-      {props.title && <Text style={styles.heading}>{props.title}</Text>}
-      <ComponentSeparator space={20} style={styles.formContainer}>
-        {props.formElements.map((element, index) => {
-          let component;
-          const error = errors[element.name];
-          switch (element.type) {
-            case FORMTYPES.INPUT:
-              component = FormInput(element);
-          }
-
-          return (
-            <Container key={index}>
-              <Controller
-                control={control}
-                name={element.name}
-                render={component as (field: FormComponentProps) => JSX.Element | undefined}
-              />
-              {error ? <Text style={styles.error}>{error.message}</Text> : null}
-            </Container>
-          );
-        })}
-      </ComponentSeparator>
+    <>
+      <ScrollView style={styles.container}>
+        {props.title && <Text style={styles.heading}>{props.title}</Text>}
+        <ComponentSeparator space={20} style={styles.formContainer}>
+          {props.formElements.map((element, index) => {
+            let component;
+            const error = errors[element.name];
+            switch (element.type) {
+              case FORMTYPES.INPUT:
+                component = FormInput(element);
+            }
+            return (
+              <Container key={index}>
+                <Controller
+                  control={control}
+                  name={element.name}
+                  render={component as (field: FormComponentProps) => JSX.Element | undefined}
+                />
+                {error ? <Text style={styles.error}>{error.message}</Text> : null}
+              </Container>
+            );
+          })}
+        </ComponentSeparator>
+      </ScrollView>
       {props.onSubmit && (
         <Button text={props.submitText ?? 'Submit'} onPress={handleSubmit(props.onSubmit)} />
       )}
-    </ScrollView>
+    </>
   );
 };

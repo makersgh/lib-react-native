@@ -1,6 +1,8 @@
 export const assets = {
   images: {
     logo: require('lib_assets/logo.png'),
+    signin: require('lib_assets/signin.png'),
+    forgetPassword: require('lib_assets/forgetPassword.png'),
     // biker: require('lib_assets/biker.png'),
     // payment: {
     //   paymentCard: {

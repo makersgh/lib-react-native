@@ -1,5 +1,5 @@
 import MapboxGL from '@react-native-mapbox-gl/maps';
-import theme from 'lib_styles/theme';
+import { theme } from 'lib_styles';
 const styles = {
   route: {
     lineColor: theme.colors.maps.routeLine,

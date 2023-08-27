@@ -3,7 +3,7 @@ import normalize, { normalizeStyle, reverseNormalize } from '../helpers/normaliz
 import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { StyleProp, ViewStyle } from 'react-native';
 
-const theme = {
+export const theme = {
   // ...DefaultTheme,
   colors: {
     // ...DefaultTheme.colors,
@@ -68,11 +68,11 @@ const theme = {
     };
   },
   textFontSizes: {
-    heading1: 24,
-    heading2: 20,
-    heading3: 18,
-    heading4: 15,
-    regular: 12,
+    heading1: 26,
+    heading2: 22,
+    heading3: 20,
+    heading4: 17,
+    regular: 14,
   },
   defaultFontFamilySemibold: 'Lato-Semibold',
   defaultFontFamilyBold: 'Lato-Bold',

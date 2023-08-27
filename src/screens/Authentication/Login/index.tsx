@@ -1,27 +1,37 @@
 import React, { FC } from 'react';
-import { loginFormElements, loginSchema, SubmitText } from './constants';
+import { loginFormElements, loginSchema, LoginText, RegisterText } from './constants';
 import { useActions } from './actions';
 import { FormBuilder } from 'lib_forms';
 import { Button, Container, Logo, Spacer, Text } from 'lib_components';
+import { assets } from 'lib_styles';
 
 export const Login: FC = () => {
-  const { login, showPrivacyPolicy } = useActions();
+  const { login, register, forgetPassword, showPrivacyPolicy } = useActions();
   return (
     <Container fullFlex padding={20}>
       <Container alignCenter fullFlex>
-        <Logo />
+        <Logo imgSource={assets.images.signin} />
         <Text heading2>Welcome!</Text>
         <Spacer />
         <Text>By signing in you agree to our</Text>
-        <Text isLink onPress={showPrivacyPolicy}>Term and privacy policy</Text>
+        <Text isLink onPress={showPrivacyPolicy}>
+          Term and privacy policy
+        </Text>
       </Container>
       <FormBuilder
-        onSubmit={login}
+        // onSubmit={login}
         schema={loginSchema}
         formElements={loginFormElements}
-        submitText={SubmitText}
       />
-      <Button onPress={login} />
+      <Text isLink onPress={forgetPassword}>
+        Forgot Password
+      </Text>
+      <Spacer />
+      <Container horizontal fullWidth>
+        <Button onPress={login} text={LoginText} fullFlex />
+        <Spacer width={10} />
+        <Button onPress={register} text={RegisterText} fullFlex />
+      </Container>
     </Container>
   );
 };

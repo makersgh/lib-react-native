@@ -1,4 +1,4 @@
-import { FormElementProps, FORMTYPES } from 'lib_forms/types';
+import { FormElementProps, FORMTYPES } from 'lib_forms';
 import * as yup from 'yup';
 
 export const loginSchema = yup.object().shape({
@@ -20,4 +20,5 @@ export const loginFormElements: FormElementProps[] = [
   },
 ];
 
-export const SubmitText = 'Log in';
+export const LoginText = 'Login';
+export const RegisterText = 'Register';

@@ -1,4 +1,4 @@
-import theme from 'lib_styles/theme';
+import { theme } from 'lib_styles';
 const styles = {
   horizontalDivider: {
     height: 1,

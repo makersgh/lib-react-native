@@ -8,10 +8,16 @@ export const useActions = () => {
   const login: onSubmitType = (data) => {
     console.log(data);
   };
+  const register: onSubmitType = (data) => {
+    console.log(data);
+  };
+  const forgetPassword = () => {
+    navigator.navigate('ForgetPassword');
+  };
 
   const showPrivacyPolicy = () => {
     navigator.navigate('PrivacyPolicy');
   };
 
-  return { login, showPrivacyPolicy };
+  return { login, register, forgetPassword, showPrivacyPolicy };
 };

@@ -7,12 +7,13 @@ import {
   ViewStyle,
   StyleProp,
   ActivityIndicator,
-  TextStyle
+  TextStyle,
 } from 'react-native';
 import styles from './styles';
-import Text from 'lib_components/Text';
+import { Text } from 'lib_components';
+import { DefaultStyleProps, defaultStyles } from 'lib_styles';
 
-interface ButtonProps extends TouchableOpacityProps {
+interface OwnProps extends DefaultStyleProps {
   children?: React.ReactNode;
   backgroundColor?: string;
   icon?: React.ReactElement;
@@ -27,23 +28,26 @@ interface ButtonProps extends TouchableOpacityProps {
   childrenContainerStyle?: StyleProp<ViewStyle>;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  icon,
-  backgroundColor,
-  isTransparent,
-  isFullWidth,
-  isChildrenCentered = true,
-  isLoading,
-  style,
-  text,
-  textStyle,
-  isDisable,
-  isOutline,
-  childrenContainerStyle,
-  ...rest
-}) => {
-  const baseBackgroundColor = theme.colors.primary
+type ButtonProps = OwnProps & TouchableOpacityProps;
+
+export const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    children,
+    icon,
+    backgroundColor,
+    isTransparent,
+    isFullWidth,
+    isChildrenCentered = true,
+    isLoading,
+    style,
+    text,
+    textStyle,
+    isDisable,
+    isOutline,
+    childrenContainerStyle,
+    ...rest
+  } = props;
+  const baseBackgroundColor = theme.colors.primary;
   let buttonBackgroundColor = backgroundColor || baseBackgroundColor;
   const buttonBorderColor = backgroundColor || baseBackgroundColor;
   let buttonBorderWidth = 0;
@@ -69,8 +73,8 @@ export const Button: React.FC<ButtonProps> = ({
   if (isChildrenCentered) {
     align = 'center';
   }
-  if(isDisable) {
-     buttonBackgroundColor = theme.colors.disbled;
+  if (isDisable) {
+    buttonBackgroundColor = theme.colors.disbled;
   }
 
   return (
@@ -82,9 +86,10 @@ export const Button: React.FC<ButtonProps> = ({
           borderColor: buttonBorderColor,
           borderWidth: buttonBorderWidth,
           padding: padding,
-          width
+          width,
         },
-        style
+        style,
+        ...defaultStyles(props),
       ]}
       disabled={isDisable}
       {...rest}
@@ -95,16 +100,20 @@ export const Button: React.FC<ButtonProps> = ({
           styles.buttonChildrenContainer,
           {
             width,
-            justifyContent: align
+            justifyContent: align,
           },
-          childrenContainerStyle
+          childrenContainerStyle,
         ]}
       >
         {isLoading ? (
-          <ActivityIndicator size='small' color='white' />
+          <ActivityIndicator size="small" color="white" />
         ) : (
           <>
-            {text && <Text isWhite style={[styles.text, textStyle]}>{text}</Text>}
+            {text && (
+              <Text isWhite style={[styles.text, textStyle]}>
+                {text}
+              </Text>
+            )}
             {children}
           </>
         )}
