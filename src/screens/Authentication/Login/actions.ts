@@ -24,7 +24,7 @@ export const useActions = () => {
       console.log(formData.username);
       register ? await user.signUp() : await user.logIn();
       navigator.navigate('Home');
-    } catch (error: Parse.Error) {
+    } catch (error: any) {
       setError('Error: ' + error.code + ' ' + error.message);
       displayMsg('Error: ' + error.code + ' ' + error.message);
       return;
