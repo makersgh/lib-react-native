@@ -1,11 +1,23 @@
-import { FieldValues } from 'react-hook-form';
-
-type onSubmitType = (data: FieldValues) => void;
+import { displayMsg } from 'lib_helpers';
+import Parse from 'parse/react-native';
+import { useRef } from 'react';
 
 export const useActions = () => {
-  const forgetPassword: onSubmitType = (data) => {
-    console.log(data);
+  const formRef = useRef();
+  const forgetPassword = async () => {
+    if (!formRef.current) {
+      return;
+    }
+    const formData = await formRef.current.validateAndGetData();
+    if (!formData) {
+      return;
+    }
+    try {
+      Parse.User.requestPasswordReset(formData.email);
+    } catch (error: any) {
+      displayMsg('Error: ' + error.code + ' ' + error.message);
+      return;
+    }
   };
-
-  return { forgetPassword };
+  return { forgetPassword, formRef };
 };

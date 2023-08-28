@@ -1,15 +1,15 @@
-import React, { memo } from "react";
-import { View, ActivityIndicator, Text } from "react-native";
+import React, { FC, memo } from 'react';
+import { View, ActivityIndicator, Text, ViewStyle, TextStyle } from 'react-native';
 
-import styles from "./styles";
+import styles from './styles';
 
-export const Loading = ({
-  style,
-  textStyle,
-  children,
-  full = false,
-  transparent = false,
-}) => {
+interface LoadingProps {
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+  children?: React.ReactNode;
+  full?: boolean;
+}
+export const Loading: FC<LoadingProps> = ({ style, textStyle, children, full }) => {
   return (
     <View style={[full ? styles.backgroundFull : styles.background, style]}>
       <ActivityIndicator size="large" color={styles.loadingColor} />

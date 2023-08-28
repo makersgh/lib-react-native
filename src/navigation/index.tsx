@@ -28,7 +28,7 @@ export const createStack = (stackScreens: StackScreen[], modals?: StackScreen[])
           />
         );
       })}
-      
+
       {modals && (
         <StackRoot.Group screenOptions={{ presentation: 'modal' }}>
           {modals.map((modal, index) => (
@@ -69,7 +69,7 @@ export const createDrawer = (drawerScreens: DrawerScreen[]) => {
 export const createTabs = (tabScreens: TabScreen[]) => {
   const TabRoot = createBottomTabNavigator();
   return (
-    <TabRoot.Navigator >
+    <TabRoot.Navigator>
       {tabScreens.map((tabScreen, index) => {
         const component = tabScreen.stackScreens
           ? () => createStack(tabScreen.stackScreens ?? [])
@@ -89,21 +89,19 @@ export const createTabs = (tabScreens: TabScreen[]) => {
 };
 
 export const setupNavigation = (navigationStructure: NavigationStructure) => {
-
   //add internal modals
   navigationStructure.modals = [
-    ...navigationStructure.modals ?? [],
+    ...(navigationStructure.modals ?? []),
     {
-      name: "PrivacyPolicy",
+      name: 'PrivacyPolicy',
       component: PrivacyPolicy,
     },
-  ]
+  ];
 
   let rootStack;
   if (navigationStructure.drawerScreens) {
     rootStack = createDrawer(navigationStructure.drawerScreens ?? []);
-  }
-  else if(navigationStructure.tabScreens){
+  } else if (navigationStructure.tabScreens) {
     rootStack = createTabs(navigationStructure.tabScreens ?? []);
   } else {
     rootStack = createStack(navigationStructure.stackScreens ?? [], navigationStructure.modals);

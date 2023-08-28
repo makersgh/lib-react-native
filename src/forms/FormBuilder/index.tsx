@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { useImperativeHandle } from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnyObjectSchema } from 'yup';
 import { FormComponentProps, FormElementProps, FORMTYPES } from '../types';
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { styles } from './style';
-import { Button, ComponentSeparator, Container, Spacer, Text } from 'lib_components';
+import { Button, ComponentSeparator, Container, Text } from 'lib_components';
 import { FormInput } from 'lib_form_components';
 
 interface FormBuilderProps {
@@ -15,15 +15,32 @@ interface FormBuilderProps {
   formElements: FormElementProps[];
   onSubmit?: (data: FieldValues) => void;
 }
-export const FormBuilder: FC<FormBuilderProps> = (props: FormBuilderProps) => {
+// eslint-disable-next-line react/display-name
+export const FormBuilder = React.forwardRef((props: FormBuilderProps, ref) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-    reset,
+    trigger,
+    getValues,
   } = useForm({
     resolver: yupResolver(props.schema),
   });
+  useImperativeHandle(ref, () => ({
+    validateAndGetData: async () => {
+      try {
+        const isValid = await trigger(); // Trigger validation
+        if (isValid) {
+          const formData = await getValues(); // Get form data
+          return formData;
+        }
+        return null; // Form is not valid
+      } catch (error) {
+        console.error(error);
+        return null; // Error occurred during validation
+      }
+    },
+  }));
   return (
     <>
       <ScrollView style={styles.container}>
@@ -54,4 +71,4 @@ export const FormBuilder: FC<FormBuilderProps> = (props: FormBuilderProps) => {
       )}
     </>
   );
-};
+});

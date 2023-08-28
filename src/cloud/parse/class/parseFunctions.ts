@@ -1,7 +1,6 @@
 import Parse from 'parse/react-native';
-import Toast from 'react-native-simple-toast';
 import { ParseBaseClass } from './baseClasses';
-import logger from 'lib_helpers/logger';
+import { displayError, displayMsg, logger } from 'lib_helpers';
 
 export class ParseFunctions {
   performAction;
@@ -10,19 +9,19 @@ export class ParseFunctions {
   }
   static performAction = async (
     actionPromise: Promise<any>,
-    silent: boolean = false,
+    silent = false,
     successMessage?: string,
     errorMessage?: string
   ) => {
     try {
       const results = await actionPromise;
       if (successMessage) {
-        Toast.show(successMessage);
+        displayMsg(successMessage);
       }
       return results;
     } catch (error) {
       if (errorMessage) {
-        Toast.show(errorMessage);
+        displayError(errorMessage);
       }
       //TODO: we can use a global cloud type here to call the logger for the right cloud type
       logger.parseError(error);
@@ -48,7 +47,7 @@ export class ParseFunctions {
   }
   static async getParseItems(
     subClass: ParseBaseClass,
-    start: number = 0,
+    start = 0,
     limit: number | undefined = undefined,
     constraints?: {
       type:

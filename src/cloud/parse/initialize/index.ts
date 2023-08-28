@@ -1,6 +1,6 @@
 import { ParseBaseClass } from '../class/baseClasses';
 import Parse from 'parse/react-native';
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface IParseServerAPICred {
   serverURL: string;
@@ -14,7 +14,7 @@ export interface SubClass {
 }
 
 class ParseInitialize {
-  initialized: boolean = false;
+  initialized = false;
   constructor(config: IParseServerAPICred, subClasses?: SubClass[]) {
     this.initialize(config, subClasses);
   }

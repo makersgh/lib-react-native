@@ -6,7 +6,7 @@ import { Button, Container, Logo, Spacer, Text } from 'lib_components';
 import { assets } from 'lib_styles';
 
 export const Login: FC = () => {
-  const { login, register, forgetPassword, showPrivacyPolicy } = useActions();
+  const { formRef, error, login, register, forgetPassword, showPrivacyPolicy } = useActions();
   return (
     <Container fullFlex padding={20}>
       <Container alignCenter fullFlex>
@@ -19,10 +19,12 @@ export const Login: FC = () => {
         </Text>
       </Container>
       <FormBuilder
+        ref={formRef}
         // onSubmit={login}
         schema={loginSchema}
         formElements={loginFormElements}
       />
+      {error ? <Text isError>{error}</Text> : null}
       <Text isLink onPress={forgetPassword}>
         Forgot Password
       </Text>

@@ -1,39 +1,35 @@
-import {
-  logger,
-  consoleTransport,
-  fileAsyncTransport,
-} from "react-native-logs";
+import { logger as RNLogger, consoleTransport } from 'react-native-logs';
 
 // import { Analytics } from "lib_actions/analytics";
 
 const Toast = __DEV__
-  ? require("react-native-simple-toast").default
+  ? // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('react-native-toast-message').default
   : undefined;
 // import RNFS from "react-native-fs";
 
-let today = new Date();
-let date = today.getDate();
-let month = today.getMonth() + 1;
-let year = today.getFullYear();
+const today = new Date();
+const date = today.getDate();
+const month = today.getMonth() + 1;
+const year = today.getFullYear();
 class Logger {
-  static logger = null;
+  static logger;
 
   constructor() {
-    if (!this.logger) {
+    if (!Logger.logger) {
       this.setupLogger();
     }
   }
   setupLogger = () => {
-    let today = new Date();
     const defaultConfig = {
-      severity: "debug",
+      severity: 'debug',
       transport: (props) => {
         consoleTransport(props);
         // fileAsyncTransport(props);
       },
       transportOptions: {
         // FS: RNFS,
-        colors: "ansi",
+        colors: 'ansi',
         fileLogName: `logs_${date}-${month}-${year}`,
       },
       levels: {
@@ -44,28 +40,47 @@ class Logger {
       },
     };
     //TODO: Debug
-    this.logger = logger.createLogger(defaultConfig);
+    Logger.logger = RNLogger.createLogger(defaultConfig);
   };
 
   log = (msg) => {
-    this.logger.info(msg);
+    Logger.logger.info(msg);
   };
   error = (err) => {
     // AKAnalytics.error(err);
-    this.logger.error(err);
-    Toast?.show(err);
+    Logger.logger.error(err);
+    Toast.show({
+      type: 'error',
+      text1: err,
+    });
   };
-  parseError = (err, msg = "") => {
+  parseError = (err, msg = '') => {
     // AKAnalytics.parseError(err);
-    let { code, message } = err;
+    let { message } = err;
+    const { code } = err;
     if (!code) {
       message = err;
     }
     this.error(`Error: ${code} | ${message} | ${msg}`);
   };
   warn = (warn) => {
-    this.logger.warn(warn);
+    Logger.logger.warn(warn);
   };
 }
 
-export default new Logger();
+export const displayMsg = (message) => {
+  Toast.show({
+    type: 'info',
+    text1: message,
+  });
+};
+
+export const displayError = (error) => {
+  Toast.show({
+    type: 'error',
+    text1: error,
+  });
+};
+
+export const logger = new Logger();
+export default logger;

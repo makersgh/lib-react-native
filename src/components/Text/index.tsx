@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text as BaseText, TextProps as BaseTextProps } from 'react-native';
-import {theme} from 'lib_styles';
+import { theme } from 'lib_styles';
 
 interface TextProps extends BaseTextProps {
   children?: React.ReactNode;
@@ -17,6 +17,7 @@ interface TextProps extends BaseTextProps {
   isWhite?: boolean;
   hasMargin?: boolean;
   isLink?: boolean;
+  isError?: boolean;
   price?: boolean;
 }
 
@@ -34,6 +35,7 @@ export const Text: React.FC<TextProps> = ({
   heading3,
   heading4,
   isLink,
+  isError,
   style,
   price,
   ...rest
@@ -80,6 +82,10 @@ export const Text: React.FC<TextProps> = ({
 
   if (isLink) {
     textDecorationLine = 'underline';
+  }
+
+  if (isError) {
+    color = theme.colors.error;
   }
 
   const fontFamily =
