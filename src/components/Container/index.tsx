@@ -3,11 +3,11 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DefaultStyleProps, defaultStyles } from 'lib_styles';
 
-interface OwnProps extends DefaultStyleProps {
+interface OwnProps  {
   children?: React.ReactNode;
 }
 
-type ContainerProps = OwnProps & TouchableOpacityProps;
+type ContainerProps = OwnProps & DefaultStyleProps & TouchableOpacityProps;
 
 export const Container: React.FC<ContainerProps> = (props) => {
   const { children, style, ...rest } = props;
@@ -20,7 +20,7 @@ export const Container: React.FC<ContainerProps> = (props) => {
       style={[
         { backgroundColor: card },
         style,
-        ...defaultStyles(props)
+        ...defaultStyles(props) as any
       ]}
       {...rest}
     >
