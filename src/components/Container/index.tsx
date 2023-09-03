@@ -1,30 +1,31 @@
 import * as React from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { SafeAreaView, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { DefaultStyleProps, defaultStyles } from 'lib_styles';
+import { DefaultStyleProps, defaultStyles, defaultStylesOptions } from 'lib_styles';
 
-interface OwnProps  {
+interface OwnProps {
   children?: React.ReactNode;
+  isSafeAreaView?: boolean;
 }
 
 type ContainerProps = OwnProps & DefaultStyleProps & TouchableOpacityProps;
 
 export const Container: React.FC<ContainerProps> = (props) => {
-  const { children, style, ...rest } = props;
+  const { children, style, isSafeAreaView, ...rest } = props;
   const {
     colors: { card },
   } = useTheme();
   return (
     <TouchableOpacity
       disabled={!props.onPress}
-      style={[
-        { backgroundColor: card },
-        style,
-        ...defaultStyles(props) as any
-      ]}
+      style={[{ backgroundColor: card }, style, ...(defaultStyles(props) as any)]}
       {...rest}
     >
-      {children}
+      {isSafeAreaView ? (
+        <SafeAreaView style={defaultStylesOptions.fullFlex}>{children}</SafeAreaView>
+      ) : (
+        children
+      )}
     </TouchableOpacity>
   );
 };

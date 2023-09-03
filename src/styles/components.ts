@@ -18,7 +18,7 @@ export interface DefaultStyleProps {
   paddingVertical?: number;
   paddingHorizontal?: number;
 }
-const styles = StyleSheet.create({
+export const defaultStylesOptions = StyleSheet.create({
   fullFlex: {
     flex: 1,
   },
@@ -52,16 +52,16 @@ const styles = StyleSheet.create({
 });
 
 export const defaultStyles = (props: DefaultStyleProps) => [
-  props.fullFlex && styles.fullFlex,
-  props.vertical && styles.vertical,
-  props.horizontal && styles.horizontal,
-  props.alignCenter && styles.alignCenter,
-  props.justifyCenter && styles.justifyCenter,
-  props.spaceBetween && styles.spaceBetween,
-  props.spaceAround && styles.spaceAround,
-  props.fullWidth && styles.fullWidth,
-  props.fullHeight && styles.fullHeight,
-  props.isPositionAbsolute && styles.positionAbsolute,
+  props.fullFlex && defaultStylesOptions.fullFlex,
+  props.vertical && defaultStylesOptions.vertical,
+  props.horizontal && defaultStylesOptions.horizontal,
+  props.alignCenter && defaultStylesOptions.alignCenter,
+  props.justifyCenter && defaultStylesOptions.justifyCenter,
+  props.spaceBetween && defaultStylesOptions.spaceBetween,
+  props.spaceAround && defaultStylesOptions.spaceAround,
+  props.fullWidth && defaultStylesOptions.fullWidth,
+  props.fullHeight && defaultStylesOptions.fullHeight,
+  props.isPositionAbsolute && defaultStylesOptions.positionAbsolute,
   props.margin && { margin: props.margin },
   props.marginVertical && { marginVertical: props.marginVertical },
   props.marginHorizontal && { marginHorizontal: props.marginHorizontal },
