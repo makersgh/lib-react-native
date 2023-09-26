@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "react",
+    "paths": {
+      "lib_api": ["./src/api/*"],
+      "lib_actions/*": ["./src/actions/*"],
+      "lib_assets/*": ["./src/assets/*"],
+      "lib_class/*": ["./src/class/*"],
+      "lib_cloud/*": ["./src/cloud/*"],
+      "lib_components/*": ["./src/components/*"],
+      "lib_form_components": ["./src/forms/components"],
+      "lib_constants/*": ["./src/constants/*"],
+      "lib_core/*": ["./src/core/*"],
+      "lib_hooks/*": ["./src/hooks/*"],
+      "lib_images/*": ["./src/assets/images/*"],
+      "lib_models/*": ["./src/models/*"],
+      "lib_modals/*": ["./src/modals/*"],
+      "lib_navigation/*": ["./src/navigation/*"],
+      "lib_screens/*": ["./src/screens/*"],
+      "lib_services/*": ["./src/services/*"],
+      "lib_stores/*": ["./src/stores/*"],
+      "lib_styles/*": ["./src/styles/*"],
+      "lib_types/*": ["./src/types/*"],
+      "lib_helpers/*": ["./src/helpers/*"]
+    },
+    "experimentalDecorators": true
+  },
+  "include": ["src/**/*"]
+}
