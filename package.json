@@ -1,7 +1,7 @@
 {
-  "name": "@my-app/lib-reactnative",
+  "name": "@suaye/lib-reactnative",
   "version": "1.0.2",
-  "description": "library used in akuila apps",
+  "description": "library used in suaye apps",
   "homepage": "https://bitbucket.org/akuila2020/akuila-library#readme",
   "repository": {
     "type": "git",
@@ -17,12 +17,10 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "start-server": "cd ../../akuila_server && npm start",
     "test-pixel3": "adb shell wm size 1440x2960; adb shell wm density 560",
     "test-iphone5": "adb shell wm size 640x1136; adb shell wm density 326",
     "test-technopop2": "adb shell wm size 480x960; adb shell wm density 197",
-    "test-huaweip8": "adb shell wm size 1080x1920; adb shell wm density 424",
-    "build-release": "cd ./android && gradlew.bat clean && gradlew.bat bundleRelease && npx react-native run-android --variant=release && start ./android/app/build/outputs/apk/release ; cd .."
+    "test-huaweip8": "adb shell wm size 1080x1920; adb shell wm density 424"
   },
   "peerDependencies": {
     "@types/react-native-vector-icons": "*",
