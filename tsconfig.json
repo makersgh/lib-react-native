@@ -51,9 +51,12 @@
     }
   },
   "exclude": [
-    "nodelib_modules",
+    "node_modules",
     "babel.config.js",
     "metro.config.js",
-    "jest.config.js"
+    "jest.config.js",
+    "dist",
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx"
   ]
 }
