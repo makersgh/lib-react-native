@@ -15,7 +15,7 @@ export interface StackScreen {
   name: string;
   component?: any;
   options?: StackNavigationOptions;
-  initialParams?: {[key: string]: string};
+  initialParams?: {[key: string]: any};
   stackScreens?: StackScreen[];
   tabScreens?: TabScreen[];
   drawerScreens?: DrawerScreen[];
@@ -24,7 +24,7 @@ export interface DrawerScreen {
   name: string;
   component?: any;
   options?: DrawerNavigationOptions;
-  initialParams?: {[key: string]: string};
+  initialParams?: {[key: string]: any};
   stackScreens?: StackScreen[];
 }
 
@@ -32,7 +32,7 @@ export interface TabScreen {
   name: string;
   component?: any;
   options?: BottomTabNavigationOptions;
-  initialParams?: {[key: string]: string};
+  initialParams?: {[key: string]: any};
   stackScreens?: StackScreen[];
 }
 
