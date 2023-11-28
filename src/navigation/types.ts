@@ -34,6 +34,7 @@ export interface TabScreen {
   options?: BottomTabNavigationOptions;
   initialParams?: {[key: string]: any};
   stackScreens?: StackScreen[];
+  initialRoute?: boolean;
 }
 
 export interface NavigationStructure {

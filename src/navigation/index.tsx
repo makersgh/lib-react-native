@@ -24,7 +24,7 @@ export const createStack = (stackScreens: StackScreen[], modals?: StackScreen[])
             name={stackScreen.name}
             component={component}
             initialParams={stackScreen.initialParams}
-            options={stackScreen.options}
+            options={{ headerShown: false, ...stackScreen.options }}
           />
         );
       })}
@@ -68,8 +68,9 @@ export const createDrawer = (drawerScreens: DrawerScreen[]) => {
 };
 export const createTabs = (tabScreens: TabScreen[]) => {
   const TabRoot = createBottomTabNavigator();
+  const initialRoute = tabScreens.find((tabScreen) => tabScreen.initialRoute)
   return (
-    <TabRoot.Navigator>
+    <TabRoot.Navigator initialRouteName={initialRoute?.name}>
       {tabScreens.map((tabScreen, index) => {
         const component = tabScreen.stackScreens
           ? () => createStack(tabScreen.stackScreens ?? [])
@@ -80,7 +81,7 @@ export const createTabs = (tabScreens: TabScreen[]) => {
             name={tabScreen.name}
             component={component}
             initialParams={tabScreen.initialParams}
-            options={tabScreen.options}
+            options={{ headerShown: false, ...tabScreen.options }}
           />
         );
       })}

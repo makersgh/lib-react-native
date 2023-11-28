@@ -24,6 +24,7 @@ class ParseInitialize {
     }
     Parse.serverURL = config.serverURL;
     Parse.initialize(config.appId, config.javascriptKey);
+
     this.initialized = true;
   }
   registerParseSubClasses(subClasses: SubClass[]) {
