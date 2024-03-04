@@ -1,6 +1,6 @@
 import Parse from 'parse/react-native'
-import { IAddress } from "./types";
-import { ParseBaseClass } from "../baseClasses";
+import { IAddress } from './types';
+import { ParseBaseClass } from '../../baseClasses';
 export const ADDRESS_CLASSNAME = "Address";
 export interface Address extends IAddress { }
 export class Address extends ParseBaseClass {
@@ -12,3 +12,4 @@ export class Address extends ParseBaseClass {
     }
   }
 }
+export * from './types'

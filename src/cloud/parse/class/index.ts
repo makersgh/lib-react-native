@@ -1,12 +1,13 @@
 import { SubClass } from '../initialize';
-import { BibleSubClasses, Precepts, PRECEPTS_CLASSNAME } from './bible';
+import { BibleSubClasses } from './bible';
+import { EcommerceSubClasses } from './ecommerce';
+export * from './baseClasses'
 
-export * from './address';
-// export * from "./chat";
 export * from './user';
 export * from './ecommerce';
 export * from './bible';
-
+export * from './parseFunctions'
 export const SubClasses: SubClass[] = [
-  ...BibleSubClasses
+  ...BibleSubClasses,
+  ...EcommerceSubClasses
 ];

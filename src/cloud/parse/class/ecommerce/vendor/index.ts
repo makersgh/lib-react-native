@@ -1,12 +1,12 @@
-import { IPartner } from "./types"
+import { IVendor } from "./types"
 import { Shop, Staff } from "../..";
 import { ParseBaseClass } from "../../baseClasses";
 
-export const PARTNER_CLASSNAME = "Partner";
-export interface Partner extends IPartner {}
-export class Partner extends ParseBaseClass {
+export const VENDOR_CLASSNAME = "Vendor";
+export interface Vendor extends IVendor {}
+export class Vendor extends ParseBaseClass {
   constructor() {
-    super(PARTNER_CLASSNAME);
+    super(VENDOR_CLASSNAME);
   }
 
   addShop(shop: Shop) {

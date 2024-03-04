@@ -3,10 +3,11 @@ import { Image, ViewProps, StyleProp, TextStyle, ImageSourcePropType, View } fro
 import { useTheme } from '@react-navigation/native';
 import styles from './styles';
 import { ParallaxImage, AdditionalParallaxProps } from 'react-native-snap-carousel';
-import { Container, Text, Touchable } from 'lib_components';
+import { Carousel, Container, Text, Touchable } from 'lib_components';
 
 type OwnProps = {
   coverImage?: ImageSourcePropType;
+  images?: string[];
   title?: string;
   subTitle?: string;
   parallaxProps?: AdditionalParallaxProps;
@@ -21,6 +22,7 @@ type OwnProps = {
 type CardProps = OwnProps & ViewProps;
 export const Card: React.FC<CardProps> = ({
   coverImage,
+  images,
   title,
   subTitle,
   children,
@@ -65,17 +67,10 @@ export const Card: React.FC<CardProps> = ({
             {hasOverlay && <View style={styles.overlay}>{renderOverlayContent}</View>}
           </Container>
         )}
+        {images && <Carousel data={images} imageCarousel={true} />}
         <Container style={styles.cardBody}>
-          {title && (
-            <Text style={[styles.cardTitle, titleStyle]}>
-              {title}
-            </Text>
-          )}
-          {subTitle && (
-            <Text style={[styles.cardSubtitle, subTitleStyle]}>
-              {subTitle}
-            </Text>
-          )}
+          {title && <Text style={[styles.cardTitle, titleStyle]}>{title}</Text>}
+          {subTitle && <Text style={[styles.cardSubtitle, subTitleStyle]}>{subTitle}</Text>}
           {children}
         </Container>
       </Container>

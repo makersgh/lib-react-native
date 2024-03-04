@@ -1,7 +1,7 @@
 import Parse from "parse/react-native";
 
-import { ParseFunctions } from "../parseFunctions";
 import { Order } from ".";
+import { ParseFunctions } from "lib_parse";
 
 export class OrderActions extends ParseFunctions {
   fetchOrders = ({ user, active }: Order): Parse.Query<Order> => {

@@ -1,6 +1,6 @@
 import Parse from 'parse/react-native'
 import { IOrder, ORDER_STATUS } from "./types"
-import { ParseBaseClass } from "../baseClasses";
+import { ParseBaseClass } from "../../baseClasses";
 import { Cart } from "..";
 import { ICoordinates } from "../address/types";
 

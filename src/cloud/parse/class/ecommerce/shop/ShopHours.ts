@@ -1,6 +1,6 @@
 import { IShopHours, SHOP_DAYS } from "./types";
-import { BaseClass } from "../baseClasses";
 import { ShopDay } from "./ShopDay";
+import { BaseClass } from "../../baseClasses";
 
 export interface ShopHours extends IShopHours {}
 export class ShopHours extends BaseClass {

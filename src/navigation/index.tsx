@@ -2,10 +2,18 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { DrawerScreen, NavigationStructure, StackScreen, TabScreen } from './types';
-import { PrivacyPolicy } from 'lib_components';
+import { CartIconWithBadge, PrivacyPolicy } from 'lib_components';
 
+const getTabIcon =
+  (iconName: string, cartCount?: number) =>
+  ({ color, size }: any) => {
+    return  (
+      <CartIconWithBadge iconName={iconName} count={cartCount} color={color} size={size} />
+    ) 
+  };
 export const createStack = (stackScreens: StackScreen[], modals?: StackScreen[]) => {
   const StackRoot = createStackNavigator();
   return (
@@ -68,20 +76,23 @@ export const createDrawer = (drawerScreens: DrawerScreen[]) => {
 };
 export const createTabs = (tabScreens: TabScreen[]) => {
   const TabRoot = createBottomTabNavigator();
-  const initialRoute = tabScreens.find((tabScreen) => tabScreen.initialRoute)
+  const initialRoute = tabScreens.find((tabScreen) => tabScreen.initialRoute);
   return (
     <TabRoot.Navigator initialRouteName={initialRoute?.name}>
       {tabScreens.map((tabScreen, index) => {
         const component = tabScreen.stackScreens
           ? () => createStack(tabScreen.stackScreens ?? [])
           : tabScreen.component;
+        const tabBarIcon = tabScreen.icon
+          ? getTabIcon(tabScreen.icon, tabScreen.cartCount)
+          : undefined;
         return (
           <TabRoot.Screen
             key={index}
             name={tabScreen.name}
             component={component}
             initialParams={tabScreen.initialParams}
-            options={{ headerShown: false, ...tabScreen.options }}
+            options={{ headerShown: false, tabBarIcon, ...tabScreen.options }}
           />
         );
       })}

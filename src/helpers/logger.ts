@@ -1,7 +1,7 @@
 import { logger as RNLogger, consoleTransport } from 'react-native-logs';
 
 // import { Analytics } from "lib_actions/analytics";
-
+import ActuaToast from 'react-native-toast-message';
 const Toast = __DEV__
   ? // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('react-native-toast-message').default
@@ -68,19 +68,27 @@ class Logger {
   };
 }
 
-export const displayMsg = (message) => {
-  Toast.show({
+export const displayMsg = (message, position: 'top' | 'bottom' = 'bottom') => {
+  console.log('asdas');
+  ActuaToast.show({
     type: 'info',
     text1: message,
+    position,
   });
 };
 
-export const displayError = (error) => {
-  Toast.show({
+export const displayError = (error: string, position: 'top' | 'bottom' = 'bottom') => {
+  ActuaToast.show({
     type: 'error',
     text1: error,
+    position,
   });
 };
 
 export const logger = new Logger();
+
+export const logError = (err: any) => {
+  logger.error(err);
+};
+
 export default logger;

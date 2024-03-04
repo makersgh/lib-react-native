@@ -9,7 +9,6 @@ import {
   User,
 } from "..";
 import {  } from ".";
-import { ICoordinates } from "../address/types";
 
 export enum ORDER_STATUS { //Maintain order of status, so determine what needs to come after what
   requested = "requested",
@@ -63,9 +62,9 @@ export interface IOrder extends Parse.Object {
   tax: number;
   tip: number;
 
-  orderNumber: () => {};
-  orderNumberText: () => {};
-  userphone: () => {};
-  username: () => {};
-  subTotal: () => {};
+  orderNumber: () => object;
+  orderNumberText: () => object;
+  userphone: () => object;
+  username: () => object;
+  subTotal: () => object;
 }

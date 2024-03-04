@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { ColorValue, StyleSheet } from 'react-native';
 
 export interface DefaultStyleProps {
   fullFlex?: boolean;
@@ -17,6 +17,7 @@ export interface DefaultStyleProps {
   padding?: number;
   paddingVertical?: number;
   paddingHorizontal?: number;
+  backgroundColor?: ColorValue;
 }
 export const defaultStylesOptions = StyleSheet.create({
   fullFlex: {
@@ -50,6 +51,13 @@ export const defaultStylesOptions = StyleSheet.create({
     height: '100%',
   },
 });
+const getBackgroundColor = (color: ColorValue) => {
+  return StyleSheet.create({
+    backgroundColor: {
+      backgroundColor: color,
+    },
+  }).backgroundColor;
+};
 
 export const defaultStyles = (props: DefaultStyleProps) => [
   props.fullFlex && defaultStylesOptions.fullFlex,
@@ -61,6 +69,7 @@ export const defaultStyles = (props: DefaultStyleProps) => [
   props.spaceAround && defaultStylesOptions.spaceAround,
   props.fullWidth && defaultStylesOptions.fullWidth,
   props.fullHeight && defaultStylesOptions.fullHeight,
+  props.backgroundColor && getBackgroundColor(props.backgroundColor),
   props.isPositionAbsolute && defaultStylesOptions.positionAbsolute,
   props.margin && { margin: props.margin },
   props.marginVertical && { marginVertical: props.marginVertical },

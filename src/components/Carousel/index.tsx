@@ -1,16 +1,13 @@
 import * as React from 'react';
-import {View, Dimensions, I18nManager, Platform} from 'react-native';
-import SnapCarousel, {
-  AdditionalParallaxProps,
-  Pagination,
-} from 'react-native-snap-carousel';
+import { View, Dimensions, I18nManager, Platform, Image } from 'react-native';
+import SnapCarousel, { AdditionalParallaxProps, Pagination } from 'react-native-snap-carousel';
 import styles from './styles';
 
 interface OwnProps {
-  renderContent: (
+  renderContent?: (
     item: any,
     index: number,
-    parallaxProps?: AdditionalParallaxProps,
+    parallaxProps?: AdditionalParallaxProps
   ) => React.ReactNode;
   data: any[];
   hasPagination?: boolean;
@@ -18,6 +15,7 @@ interface OwnProps {
   itemWidth?: number;
   inactiveSlideOpacity?: number;
   enableSnap?: boolean;
+  imageCarousel?: boolean;
 }
 
 type CarouselProps = OwnProps;
@@ -25,19 +23,22 @@ type CarouselProps = OwnProps;
 export const Carousel: React.FC<CarouselProps> = ({
   renderContent,
   data,
+  imageCarousel,
   hasPagination,
   itemWidth,
   inactiveSlideOpacity,
-  enableSnap,
+  enableSnap= true,
 }) => {
   const [activeSlide, setActiveSlide] = React.useState(0);
 
-  const renderCarouselItem = (
-    item: any,
-    parallaxProps?: AdditionalParallaxProps,
-  ) => {
+  const renderCarouselItem = (item: any, parallaxProps?: AdditionalParallaxProps) => {
     if (renderContent) {
-      return renderContent(item.item, item.index, parallaxProps);
+      return renderContent(item.item, item.index);
+    }
+    if (imageCarousel) {
+      return (
+        <Image resizeMode="cover" source={{ uri: item.item }} style={{ width: 300, height: 300 }} />
+      );
     }
     return null;
   };
@@ -73,9 +74,7 @@ export const Carousel: React.FC<CarouselProps> = ({
             inactiveSlideScale={1}
             showsHorizontalScrollIndicator={true}
             decelerationRate="normal"
-            activeSlideAlignment={
-              I18nManager.isRTL && Platform.OS === 'android' ? 'end' : 'start'
-            }
+            activeSlideAlignment={I18nManager.isRTL && Platform.OS === 'android' ? 'end' : 'start'}
             enableSnap={enableSnap}
             removeClippedSubviews={false}
           />

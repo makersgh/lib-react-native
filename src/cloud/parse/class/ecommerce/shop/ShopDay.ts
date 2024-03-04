@@ -1,4 +1,4 @@
-import { BaseClass } from "../baseClasses";
+import { BaseClass } from "../../baseClasses";
 import { IShopDay } from "./types";
 import { formatStandardTime } from "lib_helpers/validation";
 

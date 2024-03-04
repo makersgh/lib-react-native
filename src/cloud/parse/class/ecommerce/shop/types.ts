@@ -1,15 +1,13 @@
 import Parse from 'parse/react-native'
-import {
-    Address,
-    MenuItem,
-    Partner,
-    Promo,
-    Review,
-    Staff
-  } from "..";
+
 import { ICoordinates } from "../address/types";
 import { ShopDay } from "./ShopDay";
 import { ShopHours } from "./ShopHours";
+import { Address } from '../address';
+import { MenuItem } from '../menuitem';
+import { Promo } from '../promo';
+import { Review } from '../review';
+import { Staff } from '../staff';
   
   export enum SHOP_DAYS {
     MONDAY = "Monday",

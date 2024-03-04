@@ -1,6 +1,6 @@
 import Parse from 'parse/react-native'
 import { CartItem } from ".";
-import { Address, Payment, Shop } from "../..";
+import { Address, Payment, Product, Shop } from "../..";
 import { MenuItem, MenuOption } from "../menuitem";
 
 export interface ICart extends Parse.Object {
@@ -28,10 +28,9 @@ export interface ICart extends Parse.Object {
 
 export interface ICartItem {
   id: string;
-  item: MenuItem;
+  product: Product;
   quantity: number;
   notes: string;
-  options: MenuOption[];
   price: number;
   setQuantity: (quantity: number) => void;
   addOption: (option: MenuOption) => void;

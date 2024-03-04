@@ -1,5 +1,5 @@
 import { IReview } from "./types";
-import { ParseBaseClass } from "../baseClasses";
+import { ParseBaseClass } from "../../baseClasses";
 
 export const REVIEW_CLASSNAME = "Review";
 export interface Review extends IReview {}

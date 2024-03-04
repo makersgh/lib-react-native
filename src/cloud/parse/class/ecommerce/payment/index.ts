@@ -1,5 +1,5 @@
+import { ParseBaseClass } from "../../baseClasses";
 import { IPayment, PAYMENT_METHODS } from "./types"
-import { ParseBaseClass } from "../baseClasses";
 
 export const PAYMENT_CLASSNAME = "Payment";
 export interface Payment extends IPayment {}
