@@ -12,12 +12,15 @@ export interface DefaultStyleProps {
   fullHeight?: boolean;
   isPositionAbsolute?: boolean;
   margin?: number;
+  marginTop?: number;
+  marginBottom?: number;
   marginVertical?: number;
   marginHorizontal?: number;
   padding?: number;
   paddingVertical?: number;
   paddingHorizontal?: number;
   backgroundColor?: ColorValue;
+  isLoading?: boolean;
 }
 export const defaultStylesOptions = StyleSheet.create({
   fullFlex: {
@@ -72,6 +75,8 @@ export const defaultStyles = (props: DefaultStyleProps) => [
   props.backgroundColor && getBackgroundColor(props.backgroundColor),
   props.isPositionAbsolute && defaultStylesOptions.positionAbsolute,
   props.margin && { margin: props.margin },
+  props.marginTop && { marginTop: props.marginTop },
+  props.marginBottom && { marginBottom: props.marginBottom },
   props.marginVertical && { marginVertical: props.marginVertical },
   props.marginHorizontal && { marginHorizontal: props.marginHorizontal },
   props.padding && { padding: props.padding },

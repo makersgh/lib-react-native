@@ -40,7 +40,7 @@ export const Text: React.FC<TextProps> = ({
   price,
   ...rest
 }) => {
-  let color = theme.colors.primary;
+  let color = theme.colors.text;
   let fontSize = heading1
     ? theme.textFontSizes.heading1
     : heading2

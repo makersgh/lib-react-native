@@ -20,7 +20,7 @@ interface OwnProps {
   paddingHorizontal?: number;
 }
 
-type ListProps = OwnProps & Partial<FlatListProps<any>>;
+export type ListProps = OwnProps & Partial<FlatListProps<any>>;
 
 export const List: React.FC<ListProps> = ({
   data,

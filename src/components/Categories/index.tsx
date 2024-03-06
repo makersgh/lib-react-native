@@ -1,8 +1,8 @@
 import * as React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { Container, List } from "lib_components";
+import { Container, List, ListProps } from "lib_components";
 
-interface CategoryProps {
+interface CategoryProps extends ListProps {
   data: any[]
 }
 const Categories = (props: CategoryProps) => {

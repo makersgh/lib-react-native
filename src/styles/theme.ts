@@ -10,7 +10,7 @@ export const theme = {
     // primary: "#8a70c4",
     primary: '#5c40b1',
     heading: '#5c40b1',
-    text: '#2a2a2f',
+    text: '#222222',
     textWhite: '#f8f8f8',
     border: '#3a3a3a',
     borderLight: '#959596',

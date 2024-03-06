@@ -20,6 +20,7 @@ export * from './'
 import { SubClass } from '../../initialize';
 import { ADDRESS_CLASSNAME, Address } from './address';
 import { CART_CLASSNAME, Cart } from './cart';
+import { CATEGORY_CLASSNAME, Category } from './category';
 import { ORDER_CLASSNAME, Order } from './order';
 import { PAYMENT_CLASSNAME, Payment } from './payment';
 import { PRODUCT_CLASSNAME, Product } from './product';
@@ -34,6 +35,10 @@ export const EcommerceSubClasses: SubClass[] = [
   {
     className: SHOP_CLASSNAME,
     class: Shop as any,
+  },
+  {
+    className: CATEGORY_CLASSNAME,
+    class: Category as any,
   },
   {
     className: ORDER_CLASSNAME,

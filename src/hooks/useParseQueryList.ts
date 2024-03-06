@@ -1,14 +1,11 @@
 import { useParseQuery } from '@parse/react-native';
 import Parse from 'parse/react-native.js';
 
-interface UseParseQueryListProps {
-  className: string;
-  query?: Parse.Query;
-}
-export const useParseQueryList = (props: UseParseQueryListProps) => {
-  const ParseClass = Parse.Object.extend(props.className);
-  const query = new Parse.Query(ParseClass);
-  return useParseQuery(props.query ?? query);
+export const useParseQueryList = (className: string, query: Parse.Query) => {
+  const newQuery = new Parse.Query(className);
+  return useParseQuery(query ?? newQuery , {
+    enableLiveQuery: false,
+  });
 };
 
 export default useParseQueryList;

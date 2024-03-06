@@ -72,6 +72,7 @@
     "@types/parse": "^2.18.13",
     "@types/react": "^17.0.20",
     "@types/react-native": "^0.63.50",
+    "@types/react-native-vector-icons": "^6.4.18",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^7.20.0",
