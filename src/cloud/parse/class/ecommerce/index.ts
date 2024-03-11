@@ -11,7 +11,6 @@ export * from './wallet';
 export * from './transaction'
 export * from './address'
 export * from './category'
-export * from './printable'
 export * from './'
 // export * from "./review";
 // export * from "./customer";

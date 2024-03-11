@@ -68,20 +68,21 @@ class Logger {
   };
 }
 
-export const displayMsg = (message, position: 'top' | 'bottom' = 'bottom') => {
-  console.log('asdas');
+export const displayMsg = (message, onPress, position: 'top' | 'bottom' = 'bottom') => {
   ActuaToast.show({
     type: 'info',
     text1: message,
     position,
+    onPress
   });
 };
 
-export const displayError = (error: string, position: 'top' | 'bottom' = 'bottom') => {
+export const displayError = (error: string, onPress, position: 'top' | 'bottom' = 'bottom') => {
   ActuaToast.show({
     type: 'error',
     text1: error,
     position,
+    onPress
   });
 };
 

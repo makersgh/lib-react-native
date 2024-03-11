@@ -18,6 +18,7 @@ interface OwnProps extends DefaultStyleProps {
   backgroundColor?: string;
   icon?: React.ReactElement;
   isTransparent?: boolean;
+  height?: number;
   isFullWidth?: boolean;
   isChildrenCentered?: boolean;
   isLoading?: boolean;
@@ -36,6 +37,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     icon,
     backgroundColor,
     isTransparent,
+    height,
     isFullWidth,
     isChildrenCentered = true,
     isLoading,
@@ -44,10 +46,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
     textStyle,
     isDisable,
     isOutline,
+    margin,
     childrenContainerStyle,
     ...rest
   } = props;
-  const baseBackgroundColor = theme.colors.primary;
+  const baseBackgroundColor = theme.colors.buttonPrimary;
   let buttonBackgroundColor = backgroundColor || baseBackgroundColor;
   const buttonBorderColor = backgroundColor || baseBackgroundColor;
   let buttonBorderWidth = 0;
@@ -86,7 +89,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
           borderColor: buttonBorderColor,
           borderWidth: buttonBorderWidth,
           padding: padding,
+          margin: margin,
           width,
+          height: height || 50,
         },
         style,
         ...defaultStyles(props),
