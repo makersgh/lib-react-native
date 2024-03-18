@@ -63,7 +63,6 @@
     "react-native-simple-toast": "*",
     "react-native-vector-icons": "*",
     "react-native-modal": "*",
-    "react-native-snap-carousel": "*",
     "yup": "*",
     "@react-navigation/drawer": "*"
   },

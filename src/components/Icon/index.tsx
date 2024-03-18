@@ -39,3 +39,4 @@ export const Icon: React.FC<IconProps> = ({
 };
 
 export default Icon;
+export * from './Icon.type'

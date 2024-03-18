@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { theme } from 'lib_styles';
+import { theme } from 'lib_theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     // marginBottom: 24
   },
   error: {
-    color: theme.colors.error,
+    color: theme.colors.danger,
     marginTop: 5
   }
 });

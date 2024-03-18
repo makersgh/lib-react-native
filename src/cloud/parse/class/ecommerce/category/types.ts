@@ -6,4 +6,5 @@ export interface ICategory extends Parse.Object {
   image?: string;
   level?: number;
   subLevel?: Category[];
+  isPopular?: boolean;
 }

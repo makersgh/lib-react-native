@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
-import { theme } from 'lib_styles';
+import { theme } from 'lib_theme';
 
 export default StyleSheet.create({
   button: {
-    ...theme.button,
+    // ...theme.button,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -16,6 +16,6 @@ export default StyleSheet.create({
     marginRight: 5,
   },
   text: {
-    ...theme.text,
+    // ...theme.text,
   }
 });

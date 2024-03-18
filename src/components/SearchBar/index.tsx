@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import styles from './styles';
-import {useTheme} from '@react-navigation/native';
 import { Container, TextInput } from 'lib_components';
+import { theme } from 'lib_theme';
 
 type SearchBarProps = {
   leftIconName?: string;
@@ -23,7 +23,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   const {
     colors: {card},
-  } = useTheme();
+  } = theme;
   return (
     <View>
       <Container style={[styles.searchContainer, {backgroundColor: card}]}>

@@ -1,4 +1,3 @@
-import { theme } from 'lib_styles';
 const styles = {
   annotation: {
     backgroundColor: "purple",

@@ -1,128 +1,60 @@
-import * as React from 'react';
-import theme from '../../styles//theme';
-import {
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
-  ViewStyle,
-  StyleProp,
-  ActivityIndicator,
-  TextStyle,
-} from 'react-native';
-import styles from './styles';
-import { Text } from 'lib_components';
-import { DefaultStyleProps, defaultStyles } from 'lib_styles';
+import { LayoutProps } from '@shopify/restyle';
+import { Theme, extractSpacingProps } from 'lib_theme';
+import { Text } from '../Text';
+import { ButtonProps } from './Button.type';
+import { getTextColor, getTextFontSize } from './Button.util';
+import { ButtonContainer } from './ButtonContainer';
+import { Touchable } from '../Touchable';
+import { Box } from '../Box';
 
-interface OwnProps extends DefaultStyleProps {
-  children?: React.ReactNode;
-  backgroundColor?: string;
-  icon?: React.ReactElement;
-  isTransparent?: boolean;
-  height?: number;
-  isFullWidth?: boolean;
-  isChildrenCentered?: boolean;
-  isLoading?: boolean;
-  isDisable?: boolean;
-  isOutline?: boolean;
-  text?: string;
-  textStyle?: StyleProp<TextStyle>;
-  childrenContainerStyle?: StyleProp<ViewStyle>;
-}
+export const Button: React.FC<ButtonProps> = ({
+  onPress,
+  label,
+  isFullWidth,
+  textAlign = 'center',
+  variant,
+  buttonSize,
+  children,
+  borderRadius = 'l',
+  ...rest
+}) => {
+  const alignSelf: LayoutProps<Theme>['alignSelf'] = isFullWidth ? 'auto' : 'flex-start';
+  const textColor = getTextColor(variant);
+  const fontSize = getTextFontSize(buttonSize);
+  const { spacingProps, rest: otherProps } = extractSpacingProps(rest);
 
-type ButtonProps = OwnProps & TouchableOpacityProps;
-
-export const Button: React.FC<ButtonProps> = (props) => {
-  const {
-    children,
-    icon,
-    backgroundColor,
-    isTransparent,
-    height,
-    isFullWidth,
-    isChildrenCentered = true,
-    isLoading,
-    style,
-    text,
-    textStyle,
-    isDisable,
-    isOutline,
-    margin,
-    childrenContainerStyle,
-    ...rest
-  } = props;
-  const baseBackgroundColor = theme.colors.buttonPrimary;
-  let buttonBackgroundColor = backgroundColor || baseBackgroundColor;
-  const buttonBorderColor = backgroundColor || baseBackgroundColor;
-  let buttonBorderWidth = 0;
-  let padding = 0;
-  let width = 'auto';
-  let align:
-    | 'flex-start'
-    | 'center'
-    | 'flex-end'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly'
-    | undefined = 'flex-start';
-
-  if (isTransparent) {
-    buttonBackgroundColor = 'transparent';
-    buttonBorderWidth = 0;
-    padding = 0;
-  }
-  if (isFullWidth) {
-    width = '100%';
-  }
-  if (isChildrenCentered) {
-    align = 'center';
-  }
-  if (isDisable) {
-    buttonBackgroundColor = theme.colors.disbled;
-  }
+  const renderContent = () => {
+    if (children) {
+      return children;
+    }
+    return (
+      <Text color={textColor} textAlign={textAlign} fontSize={fontSize}>
+        {label}
+      </Text>
+    );
+  };
 
   return (
-    <TouchableOpacity
-      style={[
-        styles.button,
-        {
-          backgroundColor: buttonBackgroundColor,
-          borderColor: buttonBorderColor,
-          borderWidth: buttonBorderWidth,
-          padding: padding,
-          margin: margin,
-          width,
-          height: height || 50,
-        },
-        style,
-        ...defaultStyles(props),
-      ]}
-      disabled={isDisable}
-      {...rest}
+    <Box
+      borderRadius={borderRadius}
+      overflow="hidden"
+      width={isFullWidth ? '100%' : undefined}
+      {...spacingProps}
     >
-      {icon && <View style={styles.iconContainer}>{icon}</View>}
-      <View
-        style={[
-          styles.buttonChildrenContainer,
-          {
-            width,
-            justifyContent: align,
-          },
-          childrenContainerStyle,
-        ]}
+      <Touchable
+        variant={variant}
+        alignSelf={alignSelf}
+        onPress={onPress}
+        activeOpacity={0.7}
+        borderRadius={borderRadius}
+        {...otherProps}
       >
-        {isLoading ? (
-          <ActivityIndicator size="small" color="white" />
-        ) : (
-          <>
-            {text && (
-              <Text isWhite style={[styles.text, textStyle]}>
-                {text}
-              </Text>
-            )}
-            {children}
-          </>
-        )}
-      </View>
-    </TouchableOpacity>
+        <ButtonContainer variant={variant} buttonSize={buttonSize} borderRadius={borderRadius}>
+          {renderContent()}
+        </ButtonContainer>
+      </Touchable>
+    </Box>
   );
 };
+
+export * from './Button.type';

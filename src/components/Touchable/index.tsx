@@ -7,7 +7,7 @@ import {
   TouchableOpacityProps,
 } from 'react-native';
 
-type TouchableProps = {} & TouchableNativeFeedbackProps & TouchableOpacityProps;
+export type TouchableProps = {} & TouchableNativeFeedbackProps & TouchableOpacityProps;
 
 export const Touchable: React.FC<TouchableProps> = ({children, ...rest}) => {
   return Platform.OS === 'ios' ? (

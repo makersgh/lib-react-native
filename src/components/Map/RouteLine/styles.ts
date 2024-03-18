@@ -1,8 +1,8 @@
 import MapboxGL from '@react-native-mapbox-gl/maps';
-import { theme } from 'lib_styles';
+import { theme } from 'lib_theme';
 const styles = {
   route: {
-    lineColor: theme.colors.maps.routeLine,
+    lineColor: theme.colors.mapsRoutelines,
     lineCap: MapboxGL.LineJoin.Round,
     lineWidth: 6,
     lineOpacity: 1,

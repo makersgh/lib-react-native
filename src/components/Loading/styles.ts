@@ -1,4 +1,4 @@
-import theme from "lib_styles/theme";
+import { theme } from "lib_theme";
 
 const styles = {
   background: {
@@ -14,9 +14,8 @@ const styles = {
   text: {
     marginTop: 14,
     fontSize: 12,
-    fontFamily: theme.defaultFontFamilyRegular,
     textAlign:"center"
   },
 };
 
-export default theme.normalizeStyle(styles);
+export default styles;

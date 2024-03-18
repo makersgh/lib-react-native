@@ -1,76 +1,40 @@
-import * as React from 'react';
-import { FlatList, FlatListProps, ListRenderItem } from 'react-native';
+import { FlatList, FlatListProps } from 'react-native';
+import { Divider } from '../Divider';
+import React from 'react';
 import { useScrollToTop } from '@react-navigation/native';
-import Divider from '../Divider';
-import useThemeColors from 'lib_hooks/useThemeColors';
-import ListRowItem, { ListRowItemProps } from './ListRowItem';
-import styles from './styles';
+import { Text } from '../Text';
+import { Box } from '../Box';
+import { useAppTheme } from 'lib_theme';
 
-interface OwnProps {
-  data: ListRowItemProps[] | undefined;
-  margin?: number;
-  marginTop?: number;
-  marginBottom?: number;
-  marginVertical?: number;
-  marginHorizontal?: number;
-  padding?: number;
-  paddingTop?: number;
-  paddingBottom?: number;
-  paddingVertical?: number;
-  paddingHorizontal?: number;
-}
+export function List<T>({ contentContainerStyle, ...rest }: FlatListProps<T>) {
+  const { colors } = useAppTheme();
+  const ref = React.useRef(null);
+  useScrollToTop(ref);
 
-export type ListProps = OwnProps & Partial<FlatListProps<any>>;
-
-export const List: React.FC<ListProps> = ({
-  data,
-  renderItem,
-  margin,
-  marginTop,
-  marginBottom,
-  marginVertical,
-  marginHorizontal,
-  padding,
-  paddingTop,
-  paddingBottom,
-  paddingVertical,
-  paddingHorizontal,
-  ...rest
-}) => {
-  const { card } = useThemeColors();
-  const listRef = React.useRef(null);
-  useScrollToTop(listRef);
-
-  const _renderDefaultItem: ListRenderItem<ListRowItemProps> = ({ item }) => {
-    return <ListRowItem {...item} />;
+  const renderDivider = () => {
+    return <Divider />;
   };
 
   return (
     <FlatList
-      {...rest}
-      ref={listRef}
-      keyExtractor={(item, index) => `${item.id} - ${index}`}
-      data={data}
+      ref={ref}
+      ItemSeparatorComponent={renderDivider}
+      ListEmptyComponent={
+        <Box flex={1} justifyContent="center" alignItems="center">
+          <Text variant="secondary">No data</Text>
+        </Box>
+      }
+      style={{ backgroundColor: colors.card }}
       contentContainerStyle={[
         {
-          backgroundColor: card,
+          backgroundColor: colors.card,
         },
-        styles.contentContainer,
-        margin && { margin },
-        marginBottom && { marginBottom },
-        marginTop && { marginTop },
-        marginVertical && { marginVertical },
-        marginHorizontal && { marginHorizontal },
-        padding && { padding },
-        paddingBottom && { paddingBottom },
-        paddingTop && { paddingTop },
-        paddingVertical && { paddingVertical },
-        paddingHorizontal && { paddingHorizontal },
+        contentContainerStyle,
       ]}
-      ItemSeparatorComponent={Divider}
-      renderItem={renderItem || _renderDefaultItem}
+      {...rest}
     />
   );
-};
+}
 
-export default List;
+export * from './ListRowItem';
+export * from './ListRowItem.type';

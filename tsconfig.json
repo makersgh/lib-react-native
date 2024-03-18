@@ -49,7 +49,9 @@
       "lib_stores": ["./src/stores"],
       "lib_styles": ["./src/styles"],
       "lib_types": ["./src/types"],
-      "lib_helpers": ["src/helpers"]
+      "lib_helpers": ["./src/helpers"],
+      "lib_theme": ["./src/theme"],
+      "lib_utils": ["./src/utils"]
     }
   },
   "exclude": [

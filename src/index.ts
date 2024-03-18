@@ -12,3 +12,4 @@ export * from './navigation';
 export * from './screens';
 export * from './styles';
 export * from './helpers';
+export * from './theme';

@@ -1,71 +1,88 @@
-import * as React from 'react';
-import { View, StyleProp, ViewStyle } from 'react-native';
-import Container from '../Container';
-import Text from '../Text';
-import styles from './styles';
-
-export type ListRowItemProps = {
-  id?: string;
-  note?: string;
-  title: string;
-  subTitle?: string;
-  leftIcon?: React.ReactElement;
-  rightIcon?: React.ReactElement;
-  footer?: React.ReactElement;
-  containerStyle?: StyleProp<ViewStyle>;
-  leftContainerStyle?: StyleProp<ViewStyle>;
-  rightContainerStyle?: StyleProp<ViewStyle>;
-  onPress?: (data: ListRowItemProps) => void;
-};
+import React from 'react';
+import { Touchable } from '../Touchable';
+import { Box } from '../Box';
+import { Text } from '../Text';
+import { ListRowItemProps } from './ListRowItem.type';
+import { Icon, IconProps } from '../Icon';
+import { I18nManager } from 'react-native';
 
 export const ListRowItem: React.FC<ListRowItemProps> = ({
   id,
   note,
   title,
   subTitle,
-  leftIcon,
-  rightIcon,
+  isCompact,
+  leftElement,
+  rightElement,
   footer,
-  containerStyle,
-  leftContainerStyle,
-  rightContainerStyle,
+  hasChevron,
+  containerProps,
+  leftContainerProps,
+  rightContainerProps,
   onPress,
 }) => {
-  const _onPress = () => {
-    onPress &&
-      onPress({
-        id,
-        title,
-        subTitle,
-        leftIcon,
-        rightIcon,
-      });
+  const chevronIconName: IconProps['name'] = I18nManager.isRTL
+    ? 'chevron-back'
+    : 'chevron-forward';
+
+  const handleOnPress = () => {
+    onPress?.({
+      id,
+      title,
+      subTitle,
+      leftElement,
+      rightElement,
+    });
   };
 
-  return (
-    <Container onPress={_onPress}>
-      <View style={[styles.itemContainer, containerStyle]}>
-        {leftIcon && <View style={[styles.leftItem, leftContainerStyle]}>{leftIcon}</View>}
-        <View style={styles.content}>
-          {note && (
-            <Text isSecondary style={styles.note}>
-              {note}
-            </Text>
+  const renderContent = () => {
+    return (
+      <Box backgroundColor="card">
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          paddingHorizontal="m"
+          paddingVertical={isCompact ? 's' : 'm'}
+          {...containerProps}>
+          {leftElement && (
+            <Box marginRight="m" {...leftContainerProps}>
+              {leftElement}
+            </Box>
           )}
-          <Text isBold style={styles.titleText}>
-            {title}
-          </Text>
-          {subTitle && (
-            <Text style={styles.subTitle} isSecondary>
-              {subTitle}
+          <Box flex={11}>
+            {note && (
+              <Text variant="secondary" textAlign="left">
+                {note}
+              </Text>
+            )}
+            <Text fontWeight="bold" marginVertical="xs" textAlign="left">
+              {title}
             </Text>
+            {subTitle && (
+              <Text textAlign="left" variant="secondary">
+                {subTitle}
+              </Text>
+            )}
+          </Box>
+          {rightElement && (
+            <Box flex={2} alignItems="flex-end" {...rightContainerProps}>
+              {rightElement}
+            </Box>
           )}
-        </View>
-        {rightIcon && <View style={[styles.rightItem, rightContainerStyle]}>{rightIcon}</View>}
-      </View>
-      {footer && <View>{footer}</View>}
-    </Container>
-  );
-};
+          {hasChevron && (
+            <Box flex={2} alignItems="flex-end" {...rightContainerProps}>
+              <Icon name={chevronIconName} />
+            </Box>
+          )}
+        </Box>
+        {footer && <Box>{footer}</Box>}
+      </Box>
+    );
+  };
 
-export default ListRowItem;
+  if (!onPress) {
+    return renderContent();
+  }
+
+  return <Touchable onPress={handleOnPress}>{renderContent()}</Touchable>;
+};
