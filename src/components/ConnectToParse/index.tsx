@@ -37,7 +37,7 @@ export const ConnectToParse: React.FC = () => {
     <Container fullFlex margin={20}>
       <TextInput value={inputValue} onChangeText={setInputValue} />
       <Spacer />
-      <Button text="Connect" onPress={handleConnect} />
+      <Button label="Connect" onPress={handleConnect} />
       <Spacer height={50} />
       <Text isCenter heading1>
         {status}

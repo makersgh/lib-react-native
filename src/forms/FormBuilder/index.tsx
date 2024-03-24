@@ -67,7 +67,7 @@ export const FormBuilder = React.forwardRef((props: FormBuilderProps, ref) => {
         </ComponentSeparator>
       </ScrollView>
       {props.onSubmit && (
-        <Button text={props.submitText ?? 'Submit'} onPress={handleSubmit(props.onSubmit)} />
+        <Button label={props.submitText ?? 'Submit'} onPress={handleSubmit(props.onSubmit)} />
       )}
     </>
   );

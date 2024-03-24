@@ -12,19 +12,19 @@ export const Landing = () => {
     <Container fullFlex>
       <Container alignCenter fullFlex>
         <Logo />
-        <Text heading2 style={styles.introductionText}>
+        <Text variant={'subHeader'} style={styles.introductionText}>
           Welcome!
         </Text>
         <Image source={assets.images.biker} style={styles.biker} />
       </Container>
       <Container style={styles.loginMethodContainer}>
         <Button
-          text={"Sign up - it's free"}
+          label={"Sign up - it's free"}
           style={styles.button}
           isFullWidth
           onPress={handleAuthRegister}
         />
-        <Button text={'Log in'} style={styles.button} isFullWidth onPress={handleAuthLogin} />
+        <Button label={'Log in'} style={styles.button} isFullWidth onPress={handleAuthLogin} />
       </Container>
     </Container>
   );
