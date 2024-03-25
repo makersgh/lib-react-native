@@ -8,10 +8,11 @@ export * from './payment';
 export * from './vendor';
 export * from './product';
 export * from './wallet';
-export * from './transaction'
-export * from './address'
-export * from './category'
-export * from './'
+export * from './transaction';
+export * from './address';
+export * from './category';
+export * from './shipping_method';
+export * from './';
 // export * from "./review";
 // export * from "./customer";
 // export * from "./rider";
@@ -23,12 +24,11 @@ import { CATEGORY_CLASSNAME, Category } from './category';
 import { ORDER_CLASSNAME, Order } from './order';
 import { PAYMENT_CLASSNAME, Payment } from './payment';
 import { PRODUCT_CLASSNAME, Product } from './product';
+import { Shipping, SHIPPING_METHOD_CLASSNAME } from './shipping_method';
 import { SHOP_CLASSNAME, Shop } from './shop';
 import { TRANSACTION_CLASSNAME, Transaction } from './transaction';
 import { VENDOR_CLASSNAME, Vendor } from './vendor';
 import { WALLET_CLASSNAME, Wallet } from './wallet';
-
-
 
 export const EcommerceSubClasses: SubClass[] = [
   {
@@ -71,5 +71,10 @@ export const EcommerceSubClasses: SubClass[] = [
   {
     className: ADDRESS_CLASSNAME,
     class: Address as any,
+  },
+
+  {
+    className: SHIPPING_METHOD_CLASSNAME,
+    class: Shipping as any,
   },
 ];

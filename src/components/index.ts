@@ -29,5 +29,6 @@ export * from './Card';
 export * from './ActivityIndicator';
 export * from './Section';
 export * from './LottieView';
-export * from './BottomSheetModal'
-export * from './DateTimePicker'
+export * from './BottomSheetModal';
+export * from './DateTimePicker';
+export * from './Gallery';

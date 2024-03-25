@@ -18,5 +18,21 @@ export const getCloudinaryCred = async () => {
   }
   return cloudinaryCred;
 };
+export const transformImageUrl = (url: string, width?: number, height?: number) => {
+  const parts = url.split('/upload/');
+  const transformations: string[] = [];
 
+  if (width) {
+    transformations.push(`w_${width}`);
+  }
+  if (height) {
+    transformations.push(`h_${height}`);
+  }
+  if (width || height) {
+    transformations.push('c_scale'); // Maintain aspect ratio
+  }
+
+  const transformationString = transformations.join(',');
+  return `${parts[0]}/upload/${transformationString}/${parts[1]}`;
+};
 export * from './types';
