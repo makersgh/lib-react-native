@@ -62,6 +62,7 @@ export const getParseServerCredentials = async (): Promise<IParseServerAPICred |
   };
   if (credentials) {
     const apiKeys = JSON.parse(credentials.password);
+    console.log(apiKeys);
     parseCred = {
       serverURL: apiKeys.PARSE_SERVER_URL,
       appId: apiKeys.PARSE_APP_ID,

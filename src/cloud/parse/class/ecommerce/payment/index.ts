@@ -1,17 +1,15 @@
-import { ParseBaseClass } from "../../baseClasses";
-import { IPayment, PAYMENT_METHODS } from "./types"
+import { ParseBaseClass } from '../../baseClasses';
+import { IPayment as IPaymentMethod } from './types';
 
-export const PAYMENT_CLASSNAME = "Payment";
-export interface Payment extends IPayment {}
-export class Payment extends ParseBaseClass {
-  constructor(payment?: Payment) {
-    super(PAYMENT_CLASSNAME);
-    if (payment && typeof payment === "object") {
-      this.fromObject(payment);
+export const PAYMENT_METHOD_CLASSNAME = 'PaymentMethod';
+export interface PaymentMethod extends IPaymentMethod {}
+export class PaymentMethod extends ParseBaseClass {
+  constructor(paymentMethod?: PaymentMethod) {
+    super(PAYMENT_METHOD_CLASSNAME);
+    if (paymentMethod && typeof paymentMethod === 'object') {
+      this.fromObject(paymentMethod);
     }
   }
-
-  isMomoPayment() {
-    return this.method === PAYMENT_METHODS.MOMO;
-  }
 }
+
+export * from './types';

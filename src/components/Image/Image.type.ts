@@ -1,5 +1,5 @@
 import { BoxProps } from '@shopify/restyle';
-import { Theme } from '@src/theme';
-import { ImageProps as ExpoImageProps } from 'expo-image';
+import { ImageProps as RNImageProps } from 'react-native';
+import { Theme } from 'lib_theme';
 
-export type ImageProps = BoxProps<Theme> & ExpoImageProps;
+export type ImageProps = BoxProps<Theme> & RNImageProps;

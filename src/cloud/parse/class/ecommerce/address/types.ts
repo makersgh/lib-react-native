@@ -1,4 +1,4 @@
-import Parse from 'parse/react-native'
+import Parse from 'parse/react-native';
 export interface ICoordinates extends Parse.GeoPoint {
   accuracy?: number;
   altitude?: number;
@@ -27,4 +27,5 @@ export interface IAddress extends Parse.Object {
   countryCode?: string;
   adminArea?: string;
   locality?: string;
+  isPreferred?: boolean;
 }

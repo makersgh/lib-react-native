@@ -1,46 +1,41 @@
-import Parse from 'parse/react-native'
-import {
-  Address,
-  CartItem,
-  Customer,
-  Payment,
-  Rider,
-  Shop,
-  User,
-} from "..";
-import {  } from ".";
+import Parse from 'parse/react-native';
+import { Address, CartItem, ICoordinates, PaymentMethod, ShippingMethod, Shop } from '..';
+import {} from '.';
+import { User } from '../../user';
+import { Rider } from '../rider';
 
 export enum ORDER_STATUS { //Maintain order of status, so determine what needs to come after what
-  requested = "requested",
-  cancelled = "cancelled", //by user
-  declined = "declined", //by shop
-  refunded = "refunded",
-  created = "created",
-  waitingForPayment = "waitingForPayment",
-  preparing = "preparing",
-  assigned = "assigned",
-  ready = "ready",
-  pickedup = "pickedup",
-  enroute = "enroute",
-  delivered = "delivered",
-  completed = "completed",
+  requested = 'requested',
+  cancelled = 'cancelled', //by user
+  declined = 'declined', //by shop
+  refunded = 'refunded',
+  created = 'created',
+  waitingForPayment = 'waitingForPayment',
+  preparing = 'preparing',
+  assigned = 'assigned',
+  ready = 'ready',
+  pickedup = 'pickedup',
+  enroute = 'enroute',
+  delivered = 'delivered',
+  completed = 'completed',
 }
 
 export interface IOrder extends Parse.Object {
   objectId: string; //used for creating ORder object from history item
+  isBasket: boolean; // whether this order is a basket or not
   cartItems: CartItem[];
   coordinates: ICoordinates;
   origin: Address;
   destination: Address;
+  paymentMethod: PaymentMethod;
+  shippingMethod: ShippingMethod;
   user: User;
-  customer: Customer;
   shop: Shop;
   serviceFee: number;
   total: number;
   notes: string;
   status: string;
   quantity: number;
-  payment: Payment;
   shopname: string;
   deliveryFee: number;
   shopnumber: string;

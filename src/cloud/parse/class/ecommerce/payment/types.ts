@@ -1,26 +1,22 @@
-import Parse from 'parse/react-native'
-import { Address } from "..";
+import Parse from 'parse/react-native';
+import { Address } from '..';
 
 export enum PAYMENT_METHODS {
-  MOMO = "momo",
-  CARD = "card",
-  PAYPAL = "paypal",
-  APPLEPAY = "applepay",
-  GOOGLEPAY = "googlepay",
-}
-export enum MOMO_TYPES {
-  MTN = "mtn",
-  AIRTEL_TIGO = "airteltigo",
-  VODAFONE = "vodafone",
-}
-export enum CARD_TYPES {
-  VISA = "visa",
-  DISCOVER = "discover",
-  MASTERCARD = "mastercard",
+  MOMO_MTN = 'momo_mtn',
+  MOMO_AIRTELTIGO = 'momo_airteltigo',
+  MOMO_VODAFONE = 'momo_vodafone',
+  CARD_VISA = 'card_visa',
+  CARD_DISCOVER = 'card_discover',
+  CARD_MASTERCARD = 'card_mastercard',
+  CARD_AMEX = 'card_amex',
+  BANK_TRANSFER = 'bank_transfer',
+  PAYPAL = 'paypal',
+  APPLEPAY = 'applepay',
+  GOOGLEPAY = 'googlepay',
 }
 
 export interface PaymentMethodType {
-  id: MOMO_TYPES | CARD_TYPES;
+  id: PAYMENT_METHODS;
   name: string;
   image: string;
 }
@@ -43,7 +39,6 @@ interface IPaymentCard {
 export interface IPayment extends Parse.Object {
   label?: string;
   method: PAYMENT_METHODS;
-  type: MOMO_TYPES | CARD_TYPES;
   data?: string;
   countryCode?: string;
   phoneNumber?: string;

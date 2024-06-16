@@ -1,10 +1,10 @@
-import { Address, Payment } from "../..";
-import { ParseBaseClass } from "../../baseClasses";
-import { CartItem } from "./CartItem";
-import { ICart } from "./types";
+import { Address, PaymentMethod } from '../..';
+import { ParseBaseClass } from '../../baseClasses';
+import { CartItem } from './CartItem';
+import { ICart } from './types';
 
-export * from './CartItem'
-export const CART_CLASSNAME = "Cart";
+export * from './CartItem';
+export const CART_CLASSNAME = 'Cart';
 export interface Cart extends ICart {}
 export class Cart extends ParseBaseClass {
   constructor(cart?: ICart) {
@@ -41,7 +41,7 @@ export class Cart extends ParseBaseClass {
     }
   }
 
-  setPayment(payment: Payment) {
+  setPayment(payment: PaymentMethod) {
     this.payment = payment;
   }
 
@@ -54,12 +54,9 @@ export class Cart extends ParseBaseClass {
   }
 
   count(): number {
-    return this.cartItems.reduce(
-      (cartCount: number, currentCartItem: CartItem) => {
-        return cartCount + currentCartItem.quantity;
-      },
-      0
-    );
+    return this.cartItems.reduce((cartCount: number, currentCartItem: CartItem) => {
+      return cartCount + currentCartItem.quantity;
+    }, 0);
   }
 
   total(): number {
@@ -73,17 +70,14 @@ export class Cart extends ParseBaseClass {
   }
 
   getCartItem(itemId: string) {
-    return (
-      this.cartItems?.find((cartItem) => cartItem.item.id === itemId) || null
-    );
+    return this.cartItems?.find((cartItem) => cartItem.item.id === itemId) || null;
   }
 
   isCartOptionsSame(existingCartItem: CartItem, cartItem: CartItem) {
     return existingCartItem.options.every((option) =>
       cartItem.options.some((cartItemOption) => {
         return (
-          cartItemOption.description === option.description &&
-          cartItemOption.name === option.name
+          cartItemOption.description === option.description && cartItemOption.name === option.name
         );
       })
     );
@@ -92,5 +86,4 @@ export class Cart extends ParseBaseClass {
   setNotes(notes: string) {
     this.notes = notes;
   }
-
 }

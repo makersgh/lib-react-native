@@ -1,5 +1,5 @@
-import Parse from 'parse/react-native'
-import { Address, Cart, Order, Payment, Shop, User  } from "../..";
+import Parse from 'parse/react-native';
+import { Address, Cart, Order, PaymentMethod, Shop, User } from '../..';
 
 export interface ICustomer extends Parse.Object {
   user: User;
@@ -8,15 +8,15 @@ export interface ICustomer extends Parse.Object {
   addresses?: Address[];
   phone?: string;
   email?: string;
-  payment?: Payment;
-  payments?: Payment[];
+  payment?: PaymentMethod;
+  payments?: PaymentMethod[];
   carts?: Cart[];
   activeOrder?: Order;
   savedShops?: Shop[];
   addAddress: (address: Address) => void;
   removeAddress: (address: Address) => void;
-  addPayment: (payment: Payment) => void;
-  removePayment: (payment: Payment) => void;
+  addPayment: (payment: PaymentMethod) => void;
+  removePayment: (payment: PaymentMethod) => void;
   addCartItem: (cart: Cart) => void;
   clearCart: (cart: Cart) => void;
   addSavedShop: (shop: Shop) => void;

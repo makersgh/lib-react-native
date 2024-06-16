@@ -1,48 +1,73 @@
 import React from 'react';
-import { TextField, List, Divider, ListRowItemProps, ListRowItem, Box } from 'lib_components';
+import { TextField, List, ListRowItem, Box, Icon, Button, Loading } from 'lib_components';
 import { ListRenderItemInfo } from 'react-native';
 import { Address } from 'lib_cloud';
+import { useAction } from './actions';
 
 interface AddAddressProps {
-  savedAddresses: Address[];
+  onAddressAdded: (address: Address) => void;
+  onDismiss: () => void;
 }
-export const AddAddress = ({ savedAddresses }: AddAddressProps) => {
-  const prepareListData = (addresses: Address[]) => {
-    return addresses.map((item) => {
-      const { id, fullName, name } = item;
-      return {
-        id,
-        title: name,
-        subTitle: fullName,
-      };
-    });
-  };
-
-  const renderItem = (props: ListRenderItemInfo<ListRowItemProps>) => {
-    return <ListRowItem key={props.index} {...props.item} />;
+export const AddAddress = ({ onAddressAdded, onDismiss }: AddAddressProps) => {
+  const {
+    onUseCurrentLocationPressed,
+    onAddressPressed,
+    searchAddress,
+    addresses,
+    loading,
+    input,
+    setInput,
+  } = useAction(onAddressAdded);
+  const renderItem = (props: ListRenderItemInfo<Address>) => {
+    return (
+      <ListRowItem
+        key={props.index}
+        title={props.item.fullName ?? ''}
+        onPress={onAddressPressed(props.item)}
+      />
+    );
   };
 
   const renderListHeader = () => {
     return (
-      <>
-        <Box paddingVertical="s" paddingHorizontal="m">
-          <TextField
-            inputProps={{
-              placeholder: 'Enter Address',
-            }}
-            leftIcon="location"
-          />
+      <Box>
+        <Box flexDirection={'row'} paddingVertical={'m'}>
+          <Button variant={'transparent'} onPress={onDismiss}>
+            <Icon name="arrow-left" size={24} />
+          </Button>
+          <Box flex={1}>
+            <TextField
+              inputProps={{
+                autoFocus: true,
+                value: input,
+                onChangeText: setInput,
+                placeholder: 'Enter Address',
+              }}
+              leftIcon="map-marker"
+            />
+            <Button
+              label="Use Current Location"
+              textAlign={'left'}
+              variant={'transparent'}
+              onPress={onUseCurrentLocationPressed}
+            />
+          </Box>
+          <Button variant={'transparent'} onPress={searchAddress}>
+            <Icon name="search" size={24} />
+          </Button>
         </Box>
-        <Divider marginVertical="s" />
-      </>
+      </Box>
     );
   };
 
   return (
-    <List
-      data={prepareListData(savedAddresses)}
-      ListHeaderComponent={renderListHeader()}
-      renderItem={renderItem}
-    />
+    <Box flex={1}>
+      {renderListHeader()}
+      {loading ? (
+        <Loading full />
+      ) : (
+        <List data={addresses} renderItem={renderItem} contentContainerStyle={{ flex: 1 }} />
+      )}
+    </Box>
   );
 };

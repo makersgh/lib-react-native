@@ -1,7 +1,5 @@
 import { StackScreen } from 'lib_navigation';
-import { Landing } from './Landing';
 import { Login } from './Login';
-import { Register } from './Register';
 import { ForgetPassword } from './ForgetPassword';
 
 export const Authentication: StackScreen = {
@@ -9,14 +7,14 @@ export const Authentication: StackScreen = {
   stackScreens: [
     {
       name: 'Login',
-      component: Login
+      component: Login,
     },
     {
       name: 'ForgetPassword',
       component: ForgetPassword,
       options: {
         headerShown: true,
-        title:''
+        title: '',
       },
     },
   ],

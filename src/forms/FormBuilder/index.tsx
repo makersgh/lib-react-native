@@ -60,7 +60,7 @@ export const FormBuilder = React.forwardRef((props: FormBuilderProps, ref) => {
                   name={element.name}
                   render={component as (field: FormComponentProps) => JSX.Element | undefined}
                 />
-                {error ? <Text style={styles.error}>{error.message}</Text> : null}
+                {error ? <Text style={styles.error}>{String(error?.message)}</Text> : null}
               </Container>
             );
           })}

@@ -1,16 +1,15 @@
-import Parse from 'parse/react-native'
-import { IOrder, ORDER_STATUS } from "./types"
-import { ParseBaseClass } from "../../baseClasses";
-import { Cart } from "..";
-import { ICoordinates } from "../address/types";
+import Parse from 'parse/react-native';
+import { IOrder, ORDER_STATUS } from './types';
+import { ParseBaseClass } from '../../baseClasses';
+import { Cart } from '..';
+import { ICoordinates } from '../address/types';
 
-export const ORDER_CLASSNAME = "Order";
+export const ORDER_CLASSNAME = 'Order';
 export interface Order extends IOrder {}
 export class Order extends ParseBaseClass {
   order;
-  constructor(order: IOrder) {
+  constructor() {
     super(ORDER_CLASSNAME);
-    this.fromObject(order);
   }
 
   // static fromPartnerHistoryItem(historyItem: IOrder) {
@@ -67,9 +66,7 @@ export class Order extends ParseBaseClass {
   normalizedCartItems = undefined;
   get cartItems() {
     if (!this.normalizedCartItems) {
-      this.normalizedCartItems = this.cartItems?.map(
-        (cartItem) => new Cart(cartItem)
-      );
+      this.normalizedCartItems = this.cartItems?.map((cartItem) => new Cart(cartItem));
     }
     return this.normalizedCartItems;
   }
@@ -122,10 +119,7 @@ export class Order extends ParseBaseClass {
     return this.status === ORDER_STATUS.pickedup;
   }
   isConfirmedPickup() {
-    return (
-      this.statusGreaterThanEqualTo(ORDER_STATUS.ready) &&
-      !this.shopConfirmedPickup
-    );
+    return this.statusGreaterThanEqualTo(ORDER_STATUS.ready) && !this.shopConfirmedPickup;
   }
   isEnroute() {
     return this.status === ORDER_STATUS.enroute;
@@ -143,8 +137,8 @@ export class Order extends ParseBaseClass {
     return this.statusLessThanEqualTo(ORDER_STATUS.waitingForPayment);
   }
   isAwaitingMomoPayment() {
-    const payment = this.payment
-    return !this.paid && payment.isMomoPayment()
+    const payment = this.paymentMethod;
+    return !this.paid && payment.isMomoPayment();
   }
   isBeingPrepared() {
     return (

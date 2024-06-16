@@ -1,18 +1,10 @@
-import Parse from 'parse/react-native'
-import {
-  CartItem,
-  Order,
-  Payment,
-  Shop,
-  Staff,
-  User,
-  Wallet,
-} from "../..";
-import { ORDER_STATUS } from "../order/types";
+import Parse from 'parse/react-native';
+import { CartItem, Order, PaymentMethod, Shop, Staff, User, Wallet } from '../..';
+import { ORDER_STATUS } from '../order/types';
 
 export enum IPartnerType {
-  SHOP_MANAGER = "SHOP_MANAGER",
-  FLEET_MANAGER = "FLEET_MANAGER",
+  SHOP_MANAGER = 'SHOP_MANAGER',
+  FLEET_MANAGER = 'FLEET_MANAGER',
 }
 export interface IPartner extends Parse.Object {
   email: string;
@@ -20,7 +12,7 @@ export interface IPartner extends Parse.Object {
   phone: string;
   shops: Shop[];
   currentShop: Shop;
-  payment: Payment;
+  payment: PaymentMethod;
   user: User;
   activeOrders: Order[];
   staff: Staff[];
@@ -29,7 +21,6 @@ export interface IPartner extends Parse.Object {
   walletDisplay: number;
   partnerType: IPartnerType;
 }
-
 
 export interface IHistoryItem {
   orderNumber: string;

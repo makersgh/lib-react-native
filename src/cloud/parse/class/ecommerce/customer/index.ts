@@ -1,8 +1,8 @@
-import { ICustomer } from "./types"
-import { ParseBaseClass } from "../../baseClasses";
-import { Address, Cart, Payment, Shop } from "../..";
+import { ICustomer } from './types';
+import { ParseBaseClass } from '../../baseClasses';
+import { Address, Cart, PaymentMethod, Shop } from '../..';
 
-export const CUSTOMER_CLASSNAME = "Customer";
+export const CUSTOMER_CLASSNAME = 'Customer';
 export interface Customer extends ICustomer {}
 export class Customer extends ParseBaseClass {
   constructor() {
@@ -10,34 +10,34 @@ export class Customer extends ParseBaseClass {
   }
   addAddress(address: Address) {
     //TODO: check for duplicates. it's being done in userStore where user address is modified. Do we leave it there or do it here? Refer to this in the future when parse objects are mobx observable
-    this.add("addresses", address);
+    this.add('addresses', address);
   }
 
   removeAddress(address: Address) {
-    this.remove("addresses", address);
+    this.remove('addresses', address);
   }
-  addPayment(payment: Payment) {
+  addPayment(payment: PaymentMethod) {
     //TODO: check for duplicates. it's being done in userStore where user payment is modified. Do we leave it there or do it here? Refer to this in the future when parse objects are mobx observable
-    this.add("payments", payment);
+    this.add('payments', payment);
   }
-  removePayment(payment: Payment) {
-    this.remove("payments", payment);
+  removePayment(payment: PaymentMethod) {
+    this.remove('payments', payment);
   }
 
   addCartItem(cart: Cart) {
-    this.add("carts", cart);
+    this.add('carts', cart);
   }
 
   clearCarts() {
-    this.removeAll("carts", this.carts);
+    this.removeAll('carts', this.carts);
   }
 
   addSavedShop(shop: Shop) {
-    this.add("savedShops", shop);
+    this.add('savedShops', shop);
     this.save();
   }
   removeSavedShop(shop: Shop) {
-    this.remove("savedShops", shop);
+    this.remove('savedShops', shop);
     this.save();
   }
   isSavedShop(shop: Shop) {

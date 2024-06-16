@@ -1,3 +1,4 @@
+import React from 'react';
 import RNLottie, { AnimatedLottieViewProps } from 'lottie-react-native';
 import { createBox } from '@shopify/restyle';
 import { LottieViewProps } from './LottieView.type';

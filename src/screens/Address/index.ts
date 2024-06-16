@@ -1,4 +1,3 @@
 export * from './AddAddress';
-export * from './SavedAddresses';
-export * from './SelectLocation';
-export * from './DeliveryInformation';
+export * from './AddressInformation';
+export * from './AddressPicker';

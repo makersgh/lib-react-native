@@ -22,9 +22,9 @@ import { ADDRESS_CLASSNAME, Address } from './address';
 import { CART_CLASSNAME, Cart } from './cart';
 import { CATEGORY_CLASSNAME, Category } from './category';
 import { ORDER_CLASSNAME, Order } from './order';
-import { PAYMENT_CLASSNAME, Payment } from './payment';
+import { PAYMENT_METHOD_CLASSNAME, PaymentMethod } from './payment';
 import { PRODUCT_CLASSNAME, Product } from './product';
-import { Shipping, SHIPPING_METHOD_CLASSNAME } from './shipping_method';
+import { ShippingMethod, SHIPPING_METHOD_CLASSNAME } from './shipping_method';
 import { SHOP_CLASSNAME, Shop } from './shop';
 import { TRANSACTION_CLASSNAME, Transaction } from './transaction';
 import { VENDOR_CLASSNAME, Vendor } from './vendor';
@@ -60,8 +60,8 @@ export const EcommerceSubClasses: SubClass[] = [
     class: Cart as any,
   },
   {
-    className: PAYMENT_CLASSNAME,
-    class: Payment as any,
+    className: PAYMENT_METHOD_CLASSNAME,
+    class: PaymentMethod as any,
   },
   {
     className: TRANSACTION_CLASSNAME,
@@ -75,6 +75,6 @@ export const EcommerceSubClasses: SubClass[] = [
 
   {
     className: SHIPPING_METHOD_CLASSNAME,
-    class: Shipping as any,
+    class: ShippingMethod as any,
   },
 ];

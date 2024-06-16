@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import RNCheckBox from '@react-native-community/checkbox';
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import styles from './styles';
 import Container from '../Container';
-import Text from '../Text';
+import { Text } from '../Text';
 
 type CheckBoxProps = {
   label: string;
@@ -20,7 +20,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
   rightElement,
 }) => {
   const {
-    colors: {primary, text},
+    colors: { primary, text },
   } = useTheme();
   const [checked, setChecked] = React.useState<boolean>(defaultValue);
   const _onPress = () => {
@@ -50,11 +50,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
           <Text>{label}</Text>
         </View>
       </Container>
-      {rightElement && (
-        <Container style={styles.rightElementContainer}>
-          {rightElement}
-        </Container>
-      )}
+      {rightElement && <Container style={styles.rightElementContainer}>{rightElement}</Container>}
     </TouchableOpacity>
   );
 };

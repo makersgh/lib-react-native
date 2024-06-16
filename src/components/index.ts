@@ -7,7 +7,7 @@ export * from './Loading';
 export * from './Logo';
 // export * from './Map'
 export * from './Divider';
-export * from './PaymentMethods';
+export * from './PaymentMethodCard';
 export * from './List';
 export * from './Touchable';
 export * from './Icon';
@@ -32,3 +32,5 @@ export * from './LottieView';
 export * from './BottomSheetModal';
 export * from './DateTimePicker';
 export * from './Gallery';
+export * from './RadioButton';
+export * from './PaymentMethodCard';

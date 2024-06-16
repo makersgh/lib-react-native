@@ -68,12 +68,12 @@ class Logger {
   };
 }
 
-export const displayMsg = (message, onPress, position: 'top' | 'bottom' = 'bottom') => {
+export const displayMsg = (message, onPress?: any, position: 'top' | 'bottom' = 'bottom') => {
   ActuaToast.show({
     type: 'info',
     text1: message,
     position,
-    onPress
+    onPress,
   });
 };
 
@@ -82,7 +82,7 @@ export const displayError = (error: string, onPress, position: 'top' | 'bottom' 
     type: 'error',
     text1: error,
     position,
-    onPress
+    onPress,
   });
 };
 
